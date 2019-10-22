@@ -1,0 +1,24 @@
+{
+  "name": "topo",
+  "version": "1.0.0",
+  "description": "Polish Jura topo with gps map",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "topo",
+    "wspinanie",
+    "node"
+  ],
+  "author": "LuqApo",
+  "license": "ISC",
+  "dependencies": {
+    "koa": "^2.10.0"
+  },
+  "devDependencies": {
+    "eslint": "^6.5.1",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2"
+  }
+}
