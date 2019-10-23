@@ -4,7 +4,24 @@
   "description": "Polish Jura topo with gps map",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npm run lint && NODE_ENV=test nyc mocha",
+    "dev": "NODE_ENV=dev node app.js",
+    "lint": "eslint *.js test/"
+  },
+  "nyc": {
+    "check-coverage": true,
+    "lines": 95,
+    "statements": 95,
+    "branches": 95,
+    "exclude": [
+      "test/**",
+      "node_modules/**"
+    ],
+    "reporter": [
+      "text",
+      "json",
+      "lcov"
+    ]
   },
   "keywords": [
     "topo",
@@ -14,11 +31,20 @@
   "author": "LuqApo",
   "license": "ISC",
   "dependencies": {
-    "koa": "^2.10.0"
+    "koa": "^2.10.0",
+    "koa-bodyparser": "^4.2.1",
+    "koa-combine-routers": "^4.0.2",
+    "koa-router": "^7.4.0",
+    "mongodb": "^3.3.3",
+    "mongoose": "^5.7.6"
   },
   "devDependencies": {
+    "chai": "^4.2.0",
     "eslint": "^6.5.1",
     "eslint-config-airbnb-base": "^14.0.0",
-    "eslint-plugin-import": "^2.18.2"
+    "eslint-plugin-import": "^2.18.2",
+    "mocha": "^6.2.2",
+    "nyc": "^14.1.1",
+    "supertest": "^4.0.2"
   }
 }
