@@ -23,10 +23,6 @@ const areaSchema = new Schema({
     index: true,
   },
   location: pointSchema,
-  crags: [{
-    type: Schema.Types.ObjectId,
-    ref: 'Rock',
-  }],
 });
 
 module.exports = mongoose.model('Area', areaSchema);
