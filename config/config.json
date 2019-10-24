@@ -1,13 +1,13 @@
 {
   "test": {
     "APP_NAME": "topo-v1.0",
-    "MONGODB_URI": "mongodb://localhost:27017/kalendarz-test",
+    "MONGODB_URI": "mongodb://localhost:27017/topo-test",
     "PORT": 3001,
     "secret": "testSecret"
   },
   "dev": {
     "APP_NAME": "topo-v1.0",
-    "MONGODB_URI": "mongodb://localhost:27017/kalendarz-dev",
+    "MONGODB_URI": "mongodb://localhost:27017/topo-dev",
     "PORT": 3000
   }
 }
