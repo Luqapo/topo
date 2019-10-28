@@ -22,6 +22,9 @@ const juraCoordinates = { lat: 50.45427771000, lng: 19.55495313000 };
 
 let mongoose;
 
+const regions = {};
+const sectors = {};
+
 async function exportData(filename) {
   const data = fs.readFileSync(path.join(__dirname, '..', 'data', `${filename}.json`));
   const json = await JSON.parse(data);
@@ -46,7 +49,6 @@ async function exportData(filename) {
         },
       };
       promises.push(Area.create(area));
-      console.log('AREA name --------->', area);
     }
     if(regionRegex.test(item.url)) {
       regionName = item.url.substr(1);
@@ -56,9 +58,10 @@ async function exportData(filename) {
       const region = {
         name: regionName,
         area: areaName,
+        crags: [],
+        sectors: [],
       };
-      promises.push(Region.create(region));
-      console.log('REGION ----->', region);
+      regions[regionName] = region;
     }
     if(sectorRegex.test(item.url) && item.url) {
       sectorName = item.url.substr(1);
@@ -68,9 +71,10 @@ async function exportData(filename) {
       const sector = {
         name: sectorName,
         region: regionName,
+        crags: [],
       };
-      promises.push(Sector.create(sector));
-      console.log('Sektor ----->', sector);
+      regions[regionName].sectors.push(sectorName);
+      sectors[sectorName] = sector;
     }
     if(item.type === 'rock' && item.title) {
       const crag = {
@@ -82,23 +86,36 @@ async function exportData(filename) {
         sector: sectorName,
         region: regionName,
       };
+      regions[regionName].crags.push(item.title);
+      const checkSectorRegex = new RegExp(`.+,${sectorName},.+`, 'g');
+      const inSector = checkSectorRegex.test(item.url);
+      if(inSector) {
+        sectors[sectorName].crags.push(item.title);
+      }
       promises.push(Crag.create(crag));
-      console.log('Skała ->', crag);
     }
   });
-  await Promise.all(promises);
-  mongoose.connection.close();
+
+  Object.keys(regions).forEach((r) => {
+    promises.push(Region.create(regions[r]));
+  });
+  Object.keys(sectors).forEach((s) => {
+    promises.push(Sector.create(sectors[s]));
+  });
+  console.log('REGIONS ->', regions);
+  console.log('SECTORS ->', sectors);
+  return Promise.all(promises);
 }
 
 if(!argv.help) {
   dbInit
     .then((db) => {
       mongoose = db;
-      exportData(argv.filename);
+      return exportData(argv.filename);
     })
     .then(() => console.log('Exported'))
     .catch((err) => {
       console.error(`Failed: ${err.message}\n\n${err.stack}`);
       process.exit(-1);
-    });
+    }).finally(() => mongoose.connection.close());
 }
