@@ -30,6 +30,9 @@ const cragSchema = new Schema({
   sector: {
     type: String,
   },
+  routes: [{
+    type: String,
+  }],
 });
 
 module.exports = mongoose.model('Crag', cragSchema);
