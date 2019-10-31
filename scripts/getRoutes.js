@@ -10,7 +10,7 @@ const { argv } = require('yargs')
     filename: {
       alias: 'f',
       demandOption: true,
-      describe: 'output filename',
+      describe: 'input JSON filename',
       type: 'string',
     },
   });
