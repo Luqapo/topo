@@ -21,4 +21,13 @@ const regionSchema = new Schema({
   }],
 });
 
+regionSchema.methods.getPublicFields = function getPublicFields() {
+  return {
+    id: this._id,
+    name: this.name,
+    sectors: this.sectors,
+    crags: this.crags,
+  };
+};
+
 module.exports = mongoose.model('Region', regionSchema);

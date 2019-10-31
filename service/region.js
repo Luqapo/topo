@@ -1,15 +1,21 @@
 const Region = require('../models/region');
+const Area = require('../models/area');
 
-async function get(areaName) {
-  const regions = await Region.find({ area: areaName });
-  console.log('TCL: get -> regions', regions);
+async function get(areaId) {
+  const area = await Area.findById(areaId)
+  const regions = await Region.find({ area: area.name });
   return regions.map((r) => ({
+    id: r._id,
     name: r.name,
-    crags: r.crags,
-    sectors: r.sectors,
   }));
+}
+
+async function getOne(reginId) {
+  const region = await Region.findById(reginId);
+  return region.getPublicFields();
 }
 
 module.exports = {
   get,
+  getOne,
 };
