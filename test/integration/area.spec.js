@@ -7,7 +7,7 @@ describe('area service', () => {
   before(async () => {
     await appInit;
   });
-  it.only('returns all areas', async () => {
+  it('returns all areas', async () => {
     const areas = await service.area.getAll();
     console.log('TCL: areas', areas);
     expect(areas.length).to.equal(2);

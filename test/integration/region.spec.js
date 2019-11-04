@@ -7,9 +7,9 @@ describe('region service', () => {
     await appInit;
   });
   it('returns all regions from given area', async () => {
-    const areaName = (await service.area.getAll())[0].name;
-    console.log('TCL: areaName', areaName);
-    const regions = await service.region.get(areaName);
+    const areaId = (await service.area.getAll())[0].id;
+    console.log('TCL: areaName', areaId);
+    const regions = await service.region.get(areaId);
     console.log('TCL: regions', regions);
   });
 });

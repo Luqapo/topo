@@ -10,7 +10,7 @@ describe('region route', () => {
   before(async () => {
     app = await appInit();
   });
-  it.only('returns regions from spec area', async () => {
+  it('returns regions from spec area', async () => {
     const areaId = '5db48620fa3f6812b6b670c5';
     await request(app.callback())
       .get(`/region/${areaId}`)
@@ -22,7 +22,7 @@ describe('region route', () => {
         console.log('TCL: regionId', regionId);
       });
   });
-  it.only('returns all info about one region', async () => {
+  it('returns all info about one region', async () => {
     await request(app.callback())
       .get(`/region/one/${regionId}`)
       .expect(200)
