@@ -16,7 +16,6 @@ describe('region route', () => {
       .get(`/region/${areaId}`)
       .expect(200)
       .then((res) => {
-        console.log('RESPONSE ->', res.body);
         expect(res.body).to.be.a('array');
         regionId = res.body[Math.floor(Math.random() * res.body.length)].id;
         console.log('TCL: regionId', regionId);
@@ -29,6 +28,14 @@ describe('region route', () => {
       .then((res) => {
         console.log('RESPONSE ->', res.body);
         expect(res.body).to.be.a('object');
+      });
+  });
+  it('returns 400 when invalid id passed', async () => {
+    await request(app.callback())
+      .get('/region/one/testError')
+      .expect(404)
+      .then((res) => {
+        expect(res.body.error).to.equal('Document with id testError not found');
       });
   });
 });

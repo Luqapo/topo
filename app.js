@@ -3,7 +3,7 @@ const bodyParser = require('koa-bodyparser');
 const dbInit = require('./db/db');
 const router = require('./routes');
 const service = require('./service');
-const scopes = require('./service/utils/scopes');
+const scopes = require('./utils/scopes');
 
 const PORT = process.env.PORT || 3000;
 let appPromise;
@@ -19,7 +19,7 @@ app.use(async (ctx, next) => {
     await next();
   } catch(err) {
     // eslint-disable-next-line no-console
-    console.error(err.stack);
+    console.error(err);
     ctx.status = err.statusCode || err.status || 500;
     ctx.body = { error: err.message };
   }

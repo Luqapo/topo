@@ -1,5 +1,6 @@
 const Router = require('koa-router');
 const service = require('../service');
+const { handleError } = require('../utils/error');
 
 const router = new Router({ prefix: '/region' });
 
@@ -10,9 +11,7 @@ router.get('/:areaId', async (ctx, next) => {
     const regions = await service.region.get(areaId);
     ctx.body = regions;
   } catch(err) {
-    console.error(err.message);
-    ctx.status =400;
-    ctx.body = err.message;
+    handleError(ctx, err);
   }
   next();
 });
@@ -23,10 +22,9 @@ router.get('/one/:regionId', async (ctx, next) => {
     const region = await service.region.getOne(regionId);
     ctx.body = region;
   } catch(err) {
-    console.error(err.message);
-    ctx.status = 400;
-    ctx.body = err.message;
+    handleError(ctx, err);
   }
+  next();
 });
 
 module.exports = router;

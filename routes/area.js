@@ -1,5 +1,6 @@
 const Router = require('koa-router');
 const service = require('../service');
+const { handleError } = require('../utils/error');
 
 const router = new Router({ prefix: '/area' });
 
@@ -8,10 +9,9 @@ router.get('/', async (ctx, next) => {
     const areas = await service.area.getAll();
     ctx.body = areas;
   } catch(err) {
-    console.error(err.message);
-    ctx.status(400);
-    ctx.body = err.message;
+    handleError(ctx, err);
   }
+  next();
 });
 
 module.exports = router;

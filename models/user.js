@@ -5,16 +5,21 @@ const { Schema } = mongoose;
 const userSchema = new Schema({
   email: {
     type: String,
-    required: true,
+    required: [true, 'Please add a email'],
+    unique: true,
+    match: [
+      /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+      'Please inser valid email',
+    ],
   },
   name: {
     type: String,
-    required: true,
+    required: [true, 'Please add a name'],
     minlength: 3,
   },
   hSecret: {
     type: String,
-    required: true,
+    required: [true, 'Please add a password'],
   },
   role: {
     type: String,
