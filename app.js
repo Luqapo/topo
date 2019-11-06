@@ -2,6 +2,8 @@ const Koa = require('koa');
 const bodyParser = require('koa-bodyparser');
 const dbInit = require('./db/db');
 const router = require('./routes');
+const service = require('./service');
+const scopes = require('./service/utils/scopes');
 
 const PORT = process.env.PORT || 3000;
 let appPromise;
@@ -22,6 +24,8 @@ app.use(async (ctx, next) => {
     ctx.body = { error: err.message };
   }
 });
+
+app.use(service.auth.middleware(scopes));
 
 app.use(router());
 
