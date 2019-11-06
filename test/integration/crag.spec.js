@@ -2,7 +2,7 @@ const { expect } = require('chai');
 const service = require('../../service');
 const appInit = require('../../app');
 
-describe.only('crag service', () => {
+describe('crag service', () => {
   before(async () => {
     await appInit;
   });
