@@ -7,7 +7,7 @@ describe('crag service', () => {
     await appInit;
   });
   it('returns all crags from given region', async () => {
-    const crags = await service.crag.get('Łutowiec');
+    const crags = await service.crag.get('5db48620fa3f6812b6b67482');
     console.log('TCL: crags', crags);
   });
 });

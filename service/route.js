@@ -1,6 +1,10 @@
 const Route = require('../models/route');
+const Crag = require('../models/crag');
 
-async function get(cragName) {
+async function get(cragId) {
+  console.log('TCL: get -> cragId', cragId);
+  const cragName = (await Crag.findById(cragId)).name;
+  console.log('TCL: get -> cragName', cragName);
   const routes = await Route.find({ crag: cragName });
   return routes.map((r) => ({
     id: r._id,

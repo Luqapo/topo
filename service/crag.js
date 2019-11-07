@@ -1,6 +1,8 @@
 const Crag = require('../models/crag');
+const Region = require('../models/region');
 
-async function get(regionName) {
+async function get(regionId) {
+  const regionName = (await Region.findById(regionId)).name;
   const crags = await Crag.find({ region: regionName });
   return crags.map((c) => ({
     id: c._id,

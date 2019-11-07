@@ -50,6 +50,7 @@ module.exports = {
           }
         }
       }
+      if(!found) ctx.throw(404, 'Page not found');
       return next();
     };
   },
