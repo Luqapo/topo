@@ -91,7 +91,7 @@ describe('User endpoints', () => {
       return request(app.callback())
         .post('/user')
         .send(userData)
-        .expect(400)
+        .expect(422)
         .then(async (res) => {
           expect(res.body.error).to.equal('Please add a email');
         });
@@ -128,7 +128,7 @@ describe('User endpoints', () => {
             expect(res.body.password).to.equal(undefined);
           }));
     });
-    it('returns 401 and error (User not found) when try to login with wrong credentials', () => {
+    it('returns 404 and error (User not found) when try to login with wrong email', () => {
       const userData = {
         email: 'api-user-test10@test.com',
         password: 'testPassword',
@@ -139,6 +139,19 @@ describe('User endpoints', () => {
         .expect(404)
         .then(async (res) => {
           expect(res.body.error).to.equal('User not found');
+        });
+    });
+    it('returns 404 and error (User not found) when try to login with wrong passwor', () => {
+      const userData = {
+        email: 'api-user-test11@test.com',
+        password: 'wrongPass',
+      };
+      return request(app.callback())
+        .post('/user/login')
+        .send(userData)
+        .expect(401)
+        .then(async (res) => {
+          expect(res.body.error).to.equal('Wrong password');
         });
     });
   });

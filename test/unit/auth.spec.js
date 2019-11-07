@@ -27,7 +27,6 @@ describe('Auth service', () => {
   it('provides middleware for parsing authorization header into it\'s associated user', async () => {
     const user = await service.user.create({ email: 'test-user@test.com', name: 'firstUser', password: 'findUser' });
     const token = {
-      email: 'test-user@test.com',
       userId: user.id,
       expires: Date.now() + 3600,
     };

@@ -11,6 +11,12 @@ class ConflictError extends Error {
     this.code = 'conflict';
   }
 }
+class NotFoundError extends Error {
+  constructor(message) {
+    super(message);
+    this.code = 'not_found';
+  }
+}
 
 function handleError(ctx, err) {
   /* istanbul ignore next */
@@ -22,10 +28,12 @@ function handleError(ctx, err) {
     ctx.throw(404, error);
   } else if(err.name && err.name === 'ValidationError') {
     const error = new Error(Object.values(err.errors).map((e) => e.message));
-    ctx.throw(400, error);
+    ctx.throw(422, error);
   } else if(err.code === 'conflict') {
-    ctx.throw(400, err);
+    ctx.throw(401, err);
   } else if(err.code === 'request_error') {
+    ctx.throw(400, err);
+  } else if(err.code === 'not_found') {
     ctx.throw(404, err);
   }
   /* istanbul ignore next */
@@ -35,5 +43,6 @@ function handleError(ctx, err) {
 module.exports = {
   RequestError,
   ConflictError,
+  NotFoundError,
   handleError,
 };
