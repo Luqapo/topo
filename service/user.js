@@ -10,6 +10,10 @@ async function createUser(u) {
   if(!u.password || u.password.length < 6) {
     throw new RequestError('Password required, minimal length 6 characters');
   }
+  const user = await User.findOne({ email: u.email });
+  if(user) {
+    throw new ConflictError('Account with this email already exist');
+  }
   const hashedPAssword = bcrypt.hashSync(u.password, 8);
   const newUser = await User.create({
     email: u.email,

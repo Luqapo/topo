@@ -21,10 +21,10 @@ class NotFoundError extends Error {
 function handleError(ctx, err) {
   /* istanbul ignore next */
   if(err.code && err.code === 11000) {
-    const error = new Error('Account with this email already exist');
+    const error = new Error('Duplicate values &{err.value}');
     ctx.throw(409, error);
   } else if(err.name && err.name === 'CastError') {
-    const error = new Error(`Document with id ${err.value} not found`)
+    const error = new Error(`Document with id ${err.value} not found`);
     ctx.throw(404, error);
   } else if(err.name && err.name === 'ValidationError') {
     const error = new Error(Object.values(err.errors).map((e) => e.message));
