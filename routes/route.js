@@ -8,8 +8,8 @@ router.get('/:cragId', async (ctx, next) => {
   const { cragId } = ctx.params;
   console.log('TCL: cragId', cragId);
   try {
-    const regions = await service.route.get(cragId);
-    ctx.body = regions;
+    const routes = await service.route.get(cragId);
+    ctx.body = routes;
   } catch(err) {
     handleError(ctx, err);
   }
