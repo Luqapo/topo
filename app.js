@@ -1,5 +1,6 @@
 const Koa = require('koa');
 const bodyParser = require('koa-bodyparser');
+const cors = require('@koa/cors');
 const dbInit = require('./db/db');
 const router = require('./routes');
 const service = require('./service');
@@ -9,6 +10,8 @@ const PORT = process.env.PORT || 3000;
 let appPromise;
 
 const app = new Koa();
+
+app.use(cors());
 
 app.use(bodyParser({
   enableTypes: ['json'],
