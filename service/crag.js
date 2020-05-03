@@ -1,5 +1,6 @@
 const Crag = require('../models/crag');
 const Region = require('../models/region');
+const Route = require('../models/route');
 
 async function get(regionId) {
   const regionName = (await Region.findById(regionId)).name;
@@ -13,6 +14,14 @@ async function get(regionId) {
   }));
 }
 
+async function getOne(cragId) {
+  const crag = await Crag.findById(cragId);
+  const routes = await Route.find({ crag: crag.name });
+  console.log('TCL: getOne -> routes', routes);
+  return { ...crag, routes };
+}
+
 module.exports = {
   get,
+  getOne,
 };

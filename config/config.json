@@ -3,7 +3,8 @@
     "APP_NAME": "topo-v1.0",
     "MONGODB_URI": "mongodb://localhost:27017/topo-test",
     "PORT": 3001,
-    "secret": "testSecret"
+    "secret": "testSecret",
+    "mapApiKey": "AIzaSyAcpxIfVICjHnQYE9g9hFNtl6eQRp6mZuY"
   },
   "dev": {
     "APP_NAME": "topo-v1.0",

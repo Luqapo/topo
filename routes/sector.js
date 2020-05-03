@@ -4,11 +4,13 @@ const { handleError } = require('../utils/error');
 
 const router = new Router({ prefix: '/sector' });
 
-router.get('/:regionId', async (ctx, next) => {
-  const { regionId } = ctx.params;
+router.get('/:sectorId', async (ctx, next) => {
+  const { sectorId } = ctx.params;
+  console.log('TCL: sectorId', sectorId);
   try {
-    const sectors = await service.sector.get(regionId);
-    ctx.body = sectors;
+    const sector = await service.sector.get(sectorId);
+    console.log('TCL: sector', sector);
+    ctx.body = sector;
   } catch(err) {
     handleError(ctx, err);
   }

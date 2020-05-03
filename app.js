@@ -37,6 +37,7 @@ function init() {
     // eslint-disable-next-line no-async-promise-executor
     appPromise = new Promise(async (resolve) => {
       await dbInit;
+      await service.planer.getRoute();
       app.listen(PORT, () => {
         console.log(`Server runing in ${process.env.NODE_ENV} and listen on ${PORT}`);
         resolve(app);

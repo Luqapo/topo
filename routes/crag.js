@@ -4,10 +4,10 @@ const { handleError } = require('../utils/error');
 
 const router = new Router({ prefix: '/crag' });
 
-router.get('/:regionId', async (ctx, next) => {
-  const { regionId } = ctx.params;
+router.get('/:cragId', async (ctx, next) => {
+  const { cragId } = ctx.params;
   try {
-    const regions = await service.crag.get(regionId);
+    const regions = await service.crag.getOne(cragId);
     ctx.body = regions;
   } catch(err) {
     handleError(ctx, err);

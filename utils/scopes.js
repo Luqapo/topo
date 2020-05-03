@@ -38,6 +38,11 @@ module.exports = [
     method: 'GET',
     scope: 'public',
   }, {
+    // getting sector
+    path: /^\/sector\/[a-zA-Z0-9]+$/,
+    method: 'GET',
+    scope: 'public',
+  }, {
     // getting all routes from spec crag
     path: /^\/route\/[a-zA-Z0-9]+$/,
     method: 'GET',
