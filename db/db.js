@@ -1,7 +1,7 @@
 // istanbul ignore next
 const env = process.env.NODE_ENV || 'test';
 const mongoose = require('mongoose');
-const config = require('../config/config')[env];
+const config = require('../config/config.json')[env];
 
 mongoose.Promise = global.Promise;
 

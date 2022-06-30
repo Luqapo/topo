@@ -1,0 +1,24 @@
+GET http://localhost:3000/area
+
+###
+# jura
+GET http://localhost:3000/region/5db48620fa3f6812b6b670c5
+
+###
+# sudety
+GET http://localhost:3000/region/5db48a43a2aefc136a017b91
+
+###
+# sokoliki
+GET http://localhost:3000/region/one/5db48a44a2aefc136a017c93
+
+###
+# sudety
+GET http://localhost:3000/region/one/5db48620fa3f6812b6b67472
+
+5db48620fa3f6812b6b67295
+
+
+###
+# sudety
+GET http://localhost:3000/route/5db48620fa3f6812b6b67295

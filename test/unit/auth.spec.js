@@ -8,7 +8,7 @@ const service = require('../../service');
 const User = require('../../models/user');
 
 const env = process.env.NODE_ENV || 'test';
-const config = require('../../config/config')[env];
+const config = require('../../config/config.json')[env];
 
 chai.use(chaiAsPromised);
 chai.use(require('sinon-chai'));

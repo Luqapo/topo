@@ -10,12 +10,12 @@ const { argv } = require('yargs')
       type: 'string',
     },
   });
-const dbInit = require('../db/db');
+const dbInit = require('../../db/db');
 
-const Area = require('../models/area');
-const Region = require('../models/region');
-const Sector = require('../models/sector');
-const Crag = require('../models/crag');
+const Area = require('../../models/area');
+const Region = require('../../models/region');
+const Sector = require('../../models/sector');
+const Crag = require('../../models/crag');
 
 const sudetyCoordinates = { lat: 50.69728468000, lng: 16.20918665000 };
 const juraCoordinates = { lat: 50.45427771000, lng: 19.55495313000 };

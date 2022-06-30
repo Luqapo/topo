@@ -8,7 +8,14 @@
   },
   "dev": {
     "APP_NAME": "topo-v1.0",
-    "MONGODB_URI": "mongodb://localhost:27017/topo-dev",
-    "PORT": 3000
+    "MONGODB_URI": "mongodb://localhost:27017/dump",
+    "PORT": 3000,
+    "postgres": {
+      "host": "127.0.0.1",
+      "port": 5432,
+      "user": "wspinder",
+      "database": "wspinder",
+      "password": "wspinder"
+    }
   }
 }

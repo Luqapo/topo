@@ -2,7 +2,6 @@ const { expect } = require('chai');
 const service = require('../../service');
 const appInit = require('../../app');
 
-
 describe('area service', () => {
   before(async () => {
     await appInit;

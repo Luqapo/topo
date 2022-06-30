@@ -14,9 +14,9 @@ const { argv } = require('yargs')
       type: 'string',
     },
   });
-const dbInit = require('../db/db');
+const dbInit = require('../../db/db');
 
-const Route = require('../models/route');
+const Route = require('../../models/route');
 
 let mongoose;
 
